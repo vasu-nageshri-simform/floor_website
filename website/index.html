@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Floor Planner</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <div id="toolbar">
+    <div class="tb-group" id="tools-group">
+      <button class="tool-btn" data-tool="select" title="Select (V)">&#9979;</button>
+      <button class="tool-btn" data-tool="wall" title="Wall (W)">&#9707;</button>
+      <button class="tool-btn" data-tool="room" title="Room (R)">&#9633;</button>
+      <button class="tool-btn" data-tool="door" title="Door (D)">&#9707;D</button>
+      <button class="tool-btn" data-tool="window" title="Window (N)">&#9707;N</button>
+      <button class="tool-btn" data-tool="pan" title="Pan (Space/H)">&#9995;</button>
+    </div>
+
+    <div class="tb-group">
+      <button id="zoom-in-btn" title="Zoom in">+</button>
+      <button id="zoom-out-btn" title="Zoom out">&minus;</button>
+      <button id="zoom-reset-btn" title="Reset view">Fit</button>
+    </div>
+
+    <div class="tb-group">
+      <button id="undo-btn" title="Undo (Ctrl+Z)">&#8630;</button>
+      <button id="redo-btn" title="Redo (Ctrl+Y)">&#8631;</button>
+    </div>
+
+    <div class="tb-group">
+      <button id="export-btn" title="Export plan.json">Export</button>
+      <button id="import-btn" title="Import JSON">Import</button>
+      <input type="file" id="import-file-input" accept=".json,application/json" style="display:none">
+      <button id="clear-btn" title="Clear plan">Clear</button>
+    </div>
+
+    <div class="tb-group tb-grow">
+      <input type="text" id="plan-name-input" placeholder="Untitled Plan">
+    </div>
+  </div>
+
+  <div id="main-area">
+
+    <div id="furniture-palette">
+      <h3>Furniture</h3>
+      <div id="palette-list"></div>
+    </div>
+
+    <div id="canvas-wrap">
+      <svg id="canvas" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid-minor" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#e3e8ee" stroke-width="1"/>
+          </pattern>
+          <pattern id="grid-major" width="60" height="60" patternUnits="userSpaceOnUse">
+            <rect width="60" height="60" fill="url(#grid-minor)"/>
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#c7ced8" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <g id="viewport">
+          <rect id="grid-bg" x="-5000" y="-5000" width="10000" height="10000" fill="url(#grid-major)"></rect>
+          <g id="layer-rooms"></g>
+          <g id="layer-walls"></g>
+          <g id="layer-openings"></g>
+          <g id="layer-furniture"></g>
+          <g id="layer-draw-preview"></g>
+          <g id="layer-selection"></g>
+        </g>
+      </svg>
+      <div id="hint-bar"></div>
+    </div>
+
+    <div id="properties-panel">
+      <h3>Properties</h3>
+      <div id="properties-content">
+        <p class="empty-msg">Nothing selected.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/state.js"></script>
+<script src="js/geometry.js"></script>
+<script src="js/render.js"></script>
+<script src="js/furniture.js"></script>
+<script src="js/properties.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/viewport.js"></script>
+<script src="js/bridge.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
