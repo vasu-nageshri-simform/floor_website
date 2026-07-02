@@ -44,6 +44,14 @@ html, body {
   font-size: 14px;
   cursor: pointer;
   min-width: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#toolbar button svg {
+  display: block;
+  color: currentColor;
 }
 #toolbar button:hover { background: #3a4553; }
 #toolbar button.active {
